@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class MushroomSpawner : MonoBehaviour
 {
-    public GameObject objPrefab;
-    
-    void FixedUpdate(){
-        Instantiate(objPrefab, transform.position, Quaternion.identity);
+    [SerializeField]
+    private float timeSpawn;
+    private float timeSinceSpawn;
+    private MushroomPooler mushroomPool;
+
+    private void Start()
+    {
+        mushroomPool = FindObjectOfType<MushroomPooler>();
+    }
+    private void Update()
+    {
+        GameObject newPool = mushroomPool.GetObject();
+        newPool.transform.position = this.transform.position;
     }
 }

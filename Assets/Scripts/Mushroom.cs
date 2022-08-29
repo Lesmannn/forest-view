@@ -16,4 +16,14 @@ public class Mushroom : MonoBehaviour
 
         GetComponent<Rigidbody>().velocity = force;
     }
+    private void OnEnable()
+    {
+        StartCoroutine("lifeTime", 3f);
+    }
+
+    IEnumerator lifeTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        gameObject.SetActive(false);
+    }
 }
